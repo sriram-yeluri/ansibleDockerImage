@@ -8,6 +8,3 @@ ENV APP=/appl
 ENV DATA=/data
 
 RUN yum update -y && yum install ansible -y && yum clean all
-
-
-

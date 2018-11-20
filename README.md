@@ -12,5 +12,5 @@ docker run -d -it --name ansible ansible:v1.0 bin/bash
 ```
 ## How to connect to running container
 ``` sh
-docker exec -it 1bd3d9117bab bash
+docker exec -it <container_id> bash
 ```

@@ -2,11 +2,14 @@
 
 ARG VERSION=latest
 FROM centos:${VERSION}
-MAINTAINER SriramYeluri <yeluris@gmail.com>
+LABEL maintainer="SriramYeluri <yeluris@gmail.com>"
 
 ENV APP=/appl
 ENV DATA=/data
 
+WORKDIR /workspace
+
 RUN yum update -y && yum install ansible -y && yum clean all
 
-CMD [ "ansible-playbook", "--version" ]
+#CMD [ "ansible", "--version" ]
+ENTRYPOINT ["tail", "-f", "/dev/null"]

@@ -1,6 +1,6 @@
 #Dockerfile for ansible Image - SY
 
-ARG VERSION=latest
+ARG VERSION=8
 FROM centos:${VERSION}
 LABEL maintainer="SriramYeluri <yeluris@gmail.com>"
 
@@ -9,7 +9,8 @@ ENV DATA=/data
 
 WORKDIR /workspace
 
-RUN yum update -y && yum install ansible -y && yum clean all
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
+    yum update -y && yum install ansible -y && yum clean all
 
 #CMD [ "ansible", "--version" ]
 ENTRYPOINT ["tail", "-f", "/dev/null"]

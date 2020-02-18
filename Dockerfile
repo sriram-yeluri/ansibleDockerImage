@@ -7,7 +7,7 @@ LABEL maintainer="SriramYeluri <yeluris@gmail.com>"
 ENV APP=/appl
 ENV DATA=/data
 
-RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION}.noarch.rpm && \
     yum update -y && yum -y install ansible unzip openssh-clients && yum clean all
 
 ARG user=ansible

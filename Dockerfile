@@ -6,20 +6,20 @@ FROM centos:${VERSION}
 ENV APP=/appl
 ENV DATA=/data
 
-RUN "yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION}.noarch.rpm && \
-    yum update -y && yum -y install ansible openssh-clients && yum clean all"
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION}.noarch.rpm \
+    && yum update -y \
+    && yum -y install ansible openssh-clients \
+    && yum clean all
 
 ARG user=ansible
 
-RUN useradd $user
-
-RUN mkdir /home/$user/.ssh \ 
+RUN useradd $user \
+    && mkdir /home/$user/.ssh \ 
     && ssh-keygen -t rsa -N "" -q -f /home/$user/.ssh/id_rsa \
     && cp /home/$user/.ssh/id_rsa.pub /home/$user/.ssh/authorized_keys \
     && chown -R $user:$user /home/$user/.ssh \
-    && chmod 600 /home/$user/.ssh/authorized_keys
-
-RUN echo "$user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$user
+    && chmod 600 /home/$user/.ssh/authorized_keys \
+    && echo "$user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$user
 
 RUN mkdir /appl \
     && mkdir /data \

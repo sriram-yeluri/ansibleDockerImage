@@ -6,7 +6,7 @@ FROM centos:${VERSION}
 ENV APP=/appl
 ENV DATA=/data
 
-RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION}.noarch.rpm \
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
     && yum update -y \
     && yum -y install ansible openssh-clients \
     && yum clean all

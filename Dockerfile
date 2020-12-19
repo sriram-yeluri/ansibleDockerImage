@@ -19,6 +19,7 @@ RUN useradd $user \
     && cp /home/$user/.ssh/id_rsa.pub /home/$user/.ssh/authorized_keys \
     && chown -R $user:$user /home/$user/.ssh \
     && chmod 600 /home/$user/.ssh/authorized_keys \
+    && mkdir /etc/sudoers.d/$user \
     && echo "$user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$user
 
 RUN mkdir /appl \

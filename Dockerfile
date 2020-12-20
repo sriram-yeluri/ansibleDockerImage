@@ -2,11 +2,12 @@
 
 ARG VERSION=8
 FROM centos:${VERSION}
+ARG VERSION
 
 ENV APP=/appl
 ENV DATA=/data
 
-RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm --nogpgcheck \
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION}.noarch.rpm --nogpgcheck \
     && yum update -y \
     && yum -y install sudo ansible openssh-clients \
     && yum clean all

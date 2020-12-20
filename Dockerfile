@@ -1,14 +1,14 @@
 #Dockerfile for ansible Image - SY
 
-ARG VERSION=7
+ARG VERSION=8
 FROM centos:${VERSION}
 
 ENV APP=/appl
 ENV DATA=/data
 
-RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm --nogpgcheck \
     && yum update -y \
-    && yum -y install ansible openssh-clients \
+    && yum -y install sudo ansible openssh-clients \
     && yum clean all
 
 ARG user=ansible
@@ -19,7 +19,6 @@ RUN useradd $user \
     && cp /home/$user/.ssh/id_rsa.pub /home/$user/.ssh/authorized_keys \
     && chown -R $user:$user /home/$user/.ssh \
     && chmod 600 /home/$user/.ssh/authorized_keys \
-    && mkdir /etc/sudoers.d/$user \
     && echo "$user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$user
 
 RUN mkdir /appl \
